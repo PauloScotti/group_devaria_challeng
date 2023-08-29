@@ -1,0 +1,26 @@
+@import '../public/fonts/fonts.scss';
+@import './variables.scss';
+
+* {
+    font-family: $fontRegular;
+    font-size: 14px;
+}
+
+html,
+body,
+#__next {
+    height: 100%;
+    margin: 0;
+}
+
+.validationMessage {
+    display: block;
+    color: red;
+    font-size: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center
+}
+
+@import '../components/Auth/Login/login.scss';
+@import '../components/publicInput/publicInput.scss';
