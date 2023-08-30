@@ -1,0 +1,101 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $gray900;
+    height: 60px;
+
+    .hamburguer {
+        top: 21px;
+        position: fixed;
+        left: 18px;
+    }
+}
+
+.menu {
+    position: absolute;
+    left: 60px;
+
+    .nav_icons {
+        background-color: $gray900;
+        position: fixed;
+        height: calc(100% - 60px);
+        top: 59px;
+        bottom: 0px;
+        left: 0px;
+        width: 60px;
+        z-index: 1001;
+        transition: left 0.4s ease 0s;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        &.menu-status-false {
+            left: -60px;
+            transition: left 0.8s ease 0s;
+        }
+    }
+
+    .nav_menu {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        visibility: visible;
+        max-width: 280px;
+        width: 100%;
+        left: 60px;
+        top: 60px;
+        z-index: 1000;
+        transition: left 0.4s ease 0s;
+        overflow: hidden auto;
+        background-color: $white;
+        height: 100%;
+
+        ul {
+            position: relative;
+            cursor: pointer;
+            font-size: 0.875rem;
+            line-height: 40px;
+            padding: 24px 15px;
+            width: 100%;
+
+            li {
+                list-style-type: none;
+                margin: 0px;
+                padding: 0px;
+                font-size: 0.875rem;
+                line-height: 40px;
+
+                a {
+                    display: block;
+                    height: 100%;
+                    color: inherit;
+                    text-decoration: none;
+                    padding: 0px 16px;
+                }
+
+                &.section_title {
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    padding: 0px 16px 16px;
+                    line-height: 16px;
+                    font-size: 1rem;
+                }
+
+                &:hover:not(.section_title) {
+                    border-radius: 4px;
+                    background-color: rgba(0, 0, 0, 0.05);
+                }
+            }
+        }
+
+        &.menu-status-false {
+            left: -100%;
+            transition: left 1s ease 0s;
+        }
+    }
+
+}
