@@ -2,12 +2,20 @@ import Image from 'next/image';
 import logo_devanews from '../../../public/images/logo.svg';
 import { useState } from 'react';
 import PublicInput from '@/components/publicInput';
+import { checkEmail, checkPassword } from '@/utils/validation';
 
 export default function Login() {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState(false);
     const [disabled, setDisabled] = useState(false);
+
+    const checkForm = () => {
+        return (
+            checkEmail(login)
+            && checkPassword(password)
+        );
+    }
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -33,7 +41,7 @@ export default function Login() {
                         value={login}
                         onChange={e => setLogin(e?.target.value)}
                         validationMessage="O login informado é inválido"
-                        showValidationMessage={!login}
+                        showValidationMessage={login && !checkEmail(login)}
                     />
                     <PublicInput
                         type='password'
@@ -41,7 +49,7 @@ export default function Login() {
                         value={password}
                         onChange={e => setPassword(e?.target.value)}
                         validationMessage="A senha informada é inválida"
-                        showValidationMessage={!password}
+                        showValidationMessage={password && !checkPassword(password)}
                     />
                     <button disabled={disabled} className='primary'>{message ? '...carregando' : 'Entrar'}</button>
                 </form>
