@@ -1,7 +1,10 @@
+import News from "../News";
 
 export default function Home() {
 
     return (
-        <h1>Home</h1>
+        <div className="container-principal">
+            <News />
+        </div>
     )
 }

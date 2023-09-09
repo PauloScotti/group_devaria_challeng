@@ -9,6 +9,7 @@ export default function Header() {
 
     const [isMobile, setIsMobile] = useState(false);
     const [showHideMenu, setShowHideMenu] = useState(false);
+    const [showHideMenuAlt, setShowHideMenuAlt] = useState('Abrir menu');
     const [menuStatus, setMenuStatus] = useState(false);
 
     const showHideMenuAction = () => {
@@ -26,27 +27,39 @@ export default function Header() {
     return (
         <>
             <div className="header">
-                {!showHideMenu ? <Image
-                    src={hamburguer}
-                    alt='Abrir menu'
-                    className='hamburguer'
-                    onClick={showHideMenuAction}
-                />
-                    :
-                    <Image
-                        src={close}
-                        alt='Fechar menu'
-                        className='hamburguer'
-                        onClick={showHideMenuAction}
-                    />
+                {
+                    isMobile
+                        ?
+                        <Image
+                            src={!showHideMenu ? hamburguer : close}
+                            alt={showHideMenuAlt}
+                            className='hamburguer'
+                            onClick={showHideMenuAction}
+                        />
+                        :
+                        ""
                 }
                 <Image
-                    src={isMobile ? logoDevanewsMobile : logoDevanews}
+                    src={logoDevanewsMobile}
                     alt='Logo DevaNews' />
-            </div><div className='menu'>
+            </div>
+            <div className='menu'>
                 <nav className={`nav_icons menu-status-${menuStatus}`}>
                     <ul>
-                        <li></li>
+                        <li>
+                            {
+                                !isMobile
+                                    ?
+                                    <Image
+                                        src={!showHideMenu ? hamburguer : close}
+                                        alt={showHideMenuAlt}
+                                        className='hamburguer'
+                                        onClick={showHideMenuAction}
+                                    />
+                                    :
+                                    ""
+                            }
+                        </li>
                         <li></li>
                         <li></li>
                         <li></li>
