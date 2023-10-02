@@ -11,6 +11,7 @@ body,
 #__next {
     height: 100%;
     margin: 0;
+    padding: 0;
 }
 
 .validationMessage {
@@ -27,3 +28,4 @@ body,
 @import '../components/Header/header.scss';
 @import '../components/Home/home.scss';
 @import '../components/News/news.scss';
+@import '../pages/article/articla.scss';

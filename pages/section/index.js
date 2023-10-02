@@ -1,9 +1,13 @@
-import { useEffect, useState } from 'react';
-import senna from '../../public/images/senna.png'
-import ListNews from './News.js';
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react";
+import senna from '../../public/images//senna.png';
+import SectionNews from "@/components/Section/Section";
+import Header from "@/components/Header";
 
+export default function ListNews() {
+    const router = useRouter();
+    const id = router.query.id;
 
-export default function News() {
     const [listNews, setListNews] = useState([]);
 
     const news = [
@@ -14,6 +18,16 @@ export default function News() {
                 {
                     img: { senna },
                     title: 'Sonda da NASA fotografa lander da missão Chandrayaan-3 na Lua',
+                    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, asperiores. Minima enim autem molestiae rem repellat nobis, iusto tenetur, et, exercitationem accusantium sapiente expedita vero? Magni inventore placeat dolorem voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, asperiores. Minima enim autem molestiae rem repellat nobis, iusto tenetur, et, exercitationem accusantium sapiente expedita vero? Magni inventore placeat dolorem voluptates.'
+                },
+                {
+                    img: { senna },
+                    title: 'Covid longa: névoa mental tem relação com coágulo sanguíneo',
+                    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, asperiores. Minima enim autem molestiae rem repellat nobis, iusto tenetur, et, exercitationem accusantium sapiente expedita vero? Magni inventore placeat dolorem voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, asperiores. Minima enim autem molestiae rem repellat nobis, iusto tenetur, et, exercitationem accusantium sapiente expedita vero? Magni inventore placeat dolorem voluptates.'
+                },
+                {
+                    img: { senna },
+                    title: 'Covid longa: névoa mental tem relação com coágulo sanguíneo',
                     text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, asperiores. Minima enim autem molestiae rem repellat nobis, iusto tenetur, et, exercitationem accusantium sapiente expedita vero? Magni inventore placeat dolorem voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, asperiores. Minima enim autem molestiae rem repellat nobis, iusto tenetur, et, exercitationem accusantium sapiente expedita vero? Magni inventore placeat dolorem voluptates.'
                 },
                 {
@@ -69,11 +83,11 @@ export default function News() {
     ]
 
     useEffect(() => {
-        const formatedNews = news.map((formatedData) => (
+        const formatedNewsSection = news.map((formatedSectionData) => (
             {
-                id: formatedData.id,
-                secao: formatedData.secao,
-                news: formatedData.news.map((n) => ({
+                id: formatedSectionData.id,
+                secao: formatedSectionData.secao,
+                news: formatedSectionData.news.map((n) => ({
                     image: n.img,
                     title: n.title,
                     text: n.text
@@ -81,19 +95,25 @@ export default function News() {
             }
         ));
 
-        setListNews(formatedNews);
+        const newsBySection = formatedNewsSection.map((n) => n.id === id)
+
+        setListNews(formatedNewsSection);
     }, []);
 
     return (
-        <div className="container-news">
-            {listNews.map((news) => {
-                return (
-                    <ListNews
-                        key={news.id}
-                        {...news}
-                    />
-                )
-            })}
+        <div className="container-principal">
+            <Header />
+            <div className="container-news">
+                {listNews.map((news, i) => {
+                    return (
+                        <SectionNews
+                            key={news.id}
+                            {...news}
+                        />
+                    )
+                })}
+            </div>
         </div>
+
     )
 }

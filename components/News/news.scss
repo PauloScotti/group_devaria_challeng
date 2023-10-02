@@ -6,6 +6,7 @@
     max-width: calc(100% - 2rem);
     flex-direction: column;
     margin-top: 60px;
+    max-width: 1000px;
 
     .container-list-news {
         width: 100%;
@@ -63,7 +64,7 @@
 
         .list-news {
             div:nth-child(n+4) {
-                display: none;
+                display: block;
             }
 
             .news {
@@ -103,7 +104,7 @@
     }
 
     @media screen and (min-width: $desktopBreakpoint) {
-        max-width: calc(100% - 20rem);
+        max-width: calc((1000px + 100vw) - 1360px);
 
         .container-list-news {
 
@@ -113,9 +114,14 @@
                 width: 100%;
                 align-items: flex-start;
                 gap: 16px;
+                flex-wrap: wrap;
+
+                &.section {
+                    display: flex;
+                }
 
                 .news {
-                    width: 33%;
+                    width: 30%;
 
                     .figure {
                         width: 420px;
