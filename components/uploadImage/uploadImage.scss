@@ -1,0 +1,11 @@
+.uploadImageContainer {
+  text-align: center;
+  position: relative;
+  margin-bottom: 20px;
+  cursor: pointer;
+
+  .newsImagePreview {
+    height: 120px;
+    width: 120px;
+  }
+}

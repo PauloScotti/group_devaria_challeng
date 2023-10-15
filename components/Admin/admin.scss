@@ -1,0 +1,34 @@
+.container-admin {
+  display: flex;
+  margin-top: 90px;
+  text-align: center;
+}
+
+.container-news {
+  &.admin {
+    margin-top: 50px;
+  }
+
+  .text-news-with-limit {
+    max-width: 10ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.container-news > table > tbody > tr > td.action {
+  div {
+    button {
+      background-color: transparent;
+      border: none;
+      width: auto;
+    }
+  }
+}
+
+@media screen and (min-width: $desktopBreakpoint) {
+  .text-news-with-limit {
+    max-width: 45ch;
+  }
+}

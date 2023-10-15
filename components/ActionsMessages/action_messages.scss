@@ -1,0 +1,22 @@
+.action-message {
+  position: fixed;
+  color: white;
+  top: 70px;
+  right: 15px;
+  text-align: center;
+  padding: 0 8px;
+  border-radius: 15px;
+  z-index: 4000;
+
+  p {
+    margin-top: 1rem;
+  }
+
+  &.save {
+    background: $primary;
+  }
+
+  &.delete {
+    background: $red;
+  }
+}

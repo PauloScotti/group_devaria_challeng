@@ -1,0 +1,63 @@
+@mixin primaryButton {
+  background-color: $primaryColor2;
+  border: 1px solid $primaryColor2;
+  color: $white;
+}
+
+@mixin invertButton {
+  background-color: $white;
+  color: $primaryColor2;
+  border: 1px solid $primaryColor2;
+}
+
+@mixin redButton {
+  background-color: $red;
+  border: 1px solid $red;
+  color: $white;
+}
+
+@mixin invertRedButton {
+  background-color: $white;
+  color: $red;
+  border: 1px solid $red;
+}
+
+button {
+  width: 80%;
+  padding: 12px;
+  margin: 8px;
+  border: 1px solid $white;
+  border-radius: 4px;
+  background-color: $primaryColor2;
+  color: $white;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+  width: 60%;
+  cursor: pointer;
+
+  &.primary {
+    @include primaryButton();
+
+    &:hover {
+      @include invertButton();
+    }
+  }
+
+  &.invert {
+    @include invertButton();
+
+    &:hover {
+      @include primaryButton();
+    }
+  }
+
+  &.red {
+    @include redButton();
+
+    &:hover {
+      @include invertRedButton();
+    }
+  }
+}

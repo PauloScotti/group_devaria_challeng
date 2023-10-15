@@ -1,31 +1,57 @@
-@import '../public/fonts/fonts.scss';
-@import './variables.scss';
+@import "~bootstrap/scss/bootstrap";
+@import "../public/fonts/fonts.scss";
+@import "./variables.scss";
 
 * {
-    font-family: $fontRegular;
-    font-size: 14px;
+  font-family: $fontRegular;
+  font-size: 14px;
 }
 
 html,
 body,
 #__next {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.hide {
+  display: none !important;
 }
 
 .validationMessage {
-    display: block;
-    color: red;
-    font-size: 90%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center
+  display: block;
+  color: red;
+  font-size: 90%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-@import '../components/Auth/Login/login.scss';
-@import '../components/publicInput/publicInput.scss';
-@import '../components/Header/header.scss';
-@import '../components/Home/home.scss';
-@import '../components/News/news.scss';
-@import '../pages/article/articla.scss';
+textarea {
+  border: 1px solid $primaryColor;
+  outline: none;
+  resize: none;
+  margin-top: 20px;
+  width: 100%;
+  color: $primaryColor;
+}
+
+@media screen and (min-width: $desktopBreakpoint) {
+  .vertical-align-middle-desktop {
+    vertical-align: middle;
+  }
+}
+
+@import "../components/Auth/Login/login.scss";
+@import "../components/publicInput/publicInput.scss";
+@import "../components/Header/header.scss";
+@import "../components/Home/home.scss";
+@import "../components/News/news.scss";
+@import "../components/Button/button.scss";
+@import "../components/Admin/admin.scss";
+@import "../components/uploadImage/uploadImage.scss";
+@import "../components/Modal/modal.scss";
+@import "../components/ActionsMessages/action_messages.scss";
+@import "../pages/article/article.scss";
