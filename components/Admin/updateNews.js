@@ -108,9 +108,14 @@ function UpdateNews({ newsData, updateNewsList }) {
       e.preventDefault();
       setWhileSubmit(true);
 
-      await newsService.updatetCategory(categoryToEditId, newCategory);
+      const categoryData = {
+        nomeCategoria: newCategory,
+      };
+
+      await newsService.updatetCategory(categoryToEditId, categoryData);
 
       updateNewsList();
+      getCategory();
     } catch (error) {
       alert("Erro ao editar a categoria. " + error?.response?.data?.erro);
     }
@@ -118,6 +123,7 @@ function UpdateNews({ newsData, updateNewsList }) {
     setCategoryActionClass("hide");
     setNewCategory(false);
     setWhileSubmit(false);
+    setNewCategory("");
   };
 
   const onDeleteCategory = async (e) => {
@@ -144,13 +150,28 @@ function UpdateNews({ newsData, updateNewsList }) {
 
   const onClickEditCategory = (e) => {
     if (categoryAction === false) {
+      if (categoryToEditId === "") {
+        setCategoryToEditId(selectedCategory);
+      }
       setCategoryActionClass("");
       setCategoryAction(true);
+      setNewCategoryClass("hide");
       console.log(categoryToEditId);
     } else {
       setCategoryActionClass("hide");
       setCategoryAction(false);
       setCategoryToEditId("");
+    }
+  };
+
+  const onAddCategory = (e) => {
+    if (newCategoryClass === "hide") {
+      setNewCategoryClass("");
+      setCategoryActionClass("hide");
+      setCategoryAction(false);
+      setCategoryToEditId("");
+    } else {
+      setNewCategoryClass("hide");
     }
   };
 
@@ -197,11 +218,7 @@ function UpdateNews({ newsData, updateNewsList }) {
                 className="add-category"
                 src={newCategoryClass === "hide" ? iconPlus : iconLess}
                 alt="Adicionar categoria"
-                onClick={
-                  newCategoryClass === "hide"
-                    ? (e) => setNewCategoryClass("")
-                    : (e) => setNewCategoryClass("hide")
-                }
+                onClick={onAddCategory}
               />
               <Image
                 src={categoryAction === false ? iconeEdit : iconLess}
