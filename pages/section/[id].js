@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import NewsService from "@/services/NewsService";
-import Image from "next/image";
 import Link from "next/link";
 
 const newsServices = new NewsService();

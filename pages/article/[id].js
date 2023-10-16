@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Link from "next/link";
 import NewsService from "@/services/NewsService";
+import moment from "moment";
 
 const newsServices = new NewsService();
 
@@ -29,7 +30,10 @@ export default function Article() {
     fetchData();
   }, [router.query.id]);
 
-  console.log(newsData);
+  const getFormatedDate = (date) => {
+    moment.locale("pt-br");
+    return moment(date).utc().format("DD/MM/Y");
+  };
 
   return (
     <div className="container-principal">
@@ -52,7 +56,7 @@ export default function Article() {
             </div>
           </div>
           <h1>{newsData.titulo}</h1>
-          <p>{newsData.data}</p>
+          <p>{getFormatedDate(newsData.data)}</p>
           <div className="article-image">
             <img src={newsData.url} alt="Imagem da notícia" />
           </div>

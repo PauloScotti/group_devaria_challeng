@@ -141,7 +141,7 @@ export default function Header() {
                 <li key={i}>
                   <Link
                     onClick={showHideMenuAction}
-                    href={`section?id=${c._id}`}
+                    href={`../section/${c._id}`}
                     alt={c.nomeCategoria}
                   >
                     {c.nomeCategoria}
