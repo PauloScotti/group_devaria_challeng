@@ -2,11 +2,12 @@ import Image from "next/image";
 import logoDevanewsMobile from "../../public/images/logo_mobile.svg";
 import hamburguer from "../../public/icons/hamburguer.svg";
 import close from "../../public/icons/close.svg";
-import turnOff from "../../public/icons/turn-off.png";
 import login from "../../public/icons/seta-para-a-direita.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import NewsService from "@/services/NewsService";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 import Dropdown from "react-bootstrap/Dropdown";
 import UserService from "@/services/UserService";
@@ -24,6 +25,12 @@ export default function Header() {
   const [nomeCompleto, setNomeCompleto] = useState("");
   const primeiroNome = nomeCompleto?.split(" ")[0] || "";
   const router = useRouter();
+
+  const TextTooltip = ({ id, children, title }) => (
+    <OverlayTrigger overlay={<Tooltip id={id}>{title}</Tooltip>}>
+      <a href="#">{children}</a>
+    </OverlayTrigger>
+  );
 
   const logout = () => {
     userServices.logout();
@@ -111,14 +118,16 @@ export default function Header() {
             <li></li>
             <li>
               {primeiroNome ? (
-                <Image
-                  className={"img-logout"}
-                  src={login}
-                  alt="Sair"
-                  width={20}
-                  height={20}
-                  onClick={logout}
-                />
+                <TextTooltip title="Sair" id="t-1">
+                  <Image
+                    className={"img-logout"}
+                    src={login}
+                    alt="Sair"
+                    width={20}
+                    height={20}
+                    onClick={logout}
+                  />
+                </TextTooltip>
               ) : (
                 <Link
                   href={primeiroNome ? "#" : "/admin"}

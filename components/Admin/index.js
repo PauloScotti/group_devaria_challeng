@@ -4,6 +4,7 @@ import RegisterNews from "./registerNews";
 import Table from "react-bootstrap/Table";
 import UpdateNews from "./updateNews";
 import DeleteNews from "./deleteNews";
+import RegisterUser from "./registerUser";
 
 const newsService = new NewsService();
 
@@ -40,6 +41,7 @@ export default function Admin() {
     <>
       <div className="container-admin">
         <RegisterNews updateNewsList={updateNewsList} />
+        <RegisterUser />
       </div>
       <div className="container-news admin">
         <Table bordered hover className="vertical-align-middle-desktop">
