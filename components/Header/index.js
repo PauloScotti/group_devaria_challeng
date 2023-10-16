@@ -89,7 +89,7 @@ export default function Header() {
             <Dropdown.Menu>
               <Dropdown.Item href="/">Home</Dropdown.Item>
               <Dropdown.Item href="/admin">Administrar</Dropdown.Item>
-              <Dropdown.Item href="#/" onClick={logout}>
+              <Dropdown.Item href="/" onClick={logout}>
                 Sair
               </Dropdown.Item>
             </Dropdown.Menu>
