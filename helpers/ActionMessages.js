@@ -6,6 +6,6 @@ export class ActionMensages {
   static hide() {
     setTimeout(() => {
       document.querySelector(".show")?.classList.add("hide");
-    }, 1000);
+    }, 3000);
   }
 }

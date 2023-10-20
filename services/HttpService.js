@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ActionMensages } from "@/helpers/ActionMessages";
+import { ActionMensages } from "../helpers/ActionMessages";
 
 export default class HttpService {
   constructor() {

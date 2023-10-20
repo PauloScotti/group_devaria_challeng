@@ -12,6 +12,11 @@ export default class UserService extends HttpService {
     }
 
     const user = await this.get("/usuario");
+
+    if (user.data.avatar) {
+      localStorage.setItem("avatar", user.data.avatar);
+    }
+
     localStorage.setItem("id", user.data._id);
   }
 
@@ -19,6 +24,7 @@ export default class UserService extends HttpService {
     localStorage.removeItem("token");
     localStorage.removeItem("nome");
     localStorage.removeItem("email");
+    localStorage.removeItem("avatar");
     localStorage.removeItem("id");
   }
 
@@ -26,12 +32,24 @@ export default class UserService extends HttpService {
     return this.post("/cadastro", dados);
   }
 
-  async updateUser(dados) {
+  async updateLoggedUser(dados) {
     return this.put(`/usuario`, dados);
+  }
+
+  async updateUser(id, dados) {
+    return this.put(`/adminusuario?id=${id}`, dados);
+  }
+
+  async deleteUser(id) {
+    return this.delete(`/adminusuario?id=${id}`);
   }
 
   async getUser() {
     return this.get(`/usuario`);
+  }
+
+  async getUsers() {
+    return this.get(`/listarusuarios`);
   }
 
   estaAutenticado() {
@@ -43,6 +61,7 @@ export default class UserService extends HttpService {
       id: localStorage.getItem("id"),
       nome: localStorage.getItem("nome"),
       email: localStorage.getItem("email"),
+      avatar: localStorage.getItem("avatar"),
     };
   }
 }

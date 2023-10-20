@@ -56,7 +56,7 @@ export default function Article() {
             </div>
           </div>
           <h1>{newsData.titulo}</h1>
-          <p>{getFormatedDate(newsData.data)}</p>
+          <p>Publicada em {getFormatedDate(newsData.data)}</p>
           <div className="article-image">
             <img src={newsData.url} alt="Imagem da notícia" />
           </div>

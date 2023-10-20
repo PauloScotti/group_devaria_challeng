@@ -23,6 +23,7 @@ export default function Header() {
   const [menuStatus, setMenuStatus] = useState(false);
   const [listCategories, setListCategories] = useState([]);
   const [nomeCompleto, setNomeCompleto] = useState("");
+  const [avatar, setAvatar] = useState("");
   const primeiroNome = nomeCompleto?.split(" ")[0] || "";
   const router = useRouter();
 
@@ -43,8 +44,9 @@ export default function Header() {
   };
 
   useEffect(() => {
-    document.title = "DevaNews";
+    document.title = "DevaNews - O site de notícias dos devs";
     setNomeCompleto(localStorage?.getItem("nome"));
+    setAvatar(localStorage?.getItem("avatar"));
     if (window.innerWidth <= 992) {
       setIsMobile(true);
     }
@@ -83,12 +85,17 @@ export default function Header() {
         {!isMobile && primeiroNome ? (
           <Dropdown>
             <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-              <span>{primeiroNome}</span>
+              {avatar === "" ? (
+                <span>{primeiroNome}</span>
+              ) : (
+                <img className="avatar" src={avatar} alt="Avatar" />
+              )}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
               <Dropdown.Item href="/">Home</Dropdown.Item>
               <Dropdown.Item href="/admin">Administrar</Dropdown.Item>
+              <Dropdown.Item href="/users">Usuários</Dropdown.Item>
               <Dropdown.Item href="/" onClick={logout}>
                 Sair
               </Dropdown.Item>

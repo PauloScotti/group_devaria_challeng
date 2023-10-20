@@ -65,6 +65,7 @@ function UpdateNews({ newsData, updateNewsList }) {
       newsToUpdateData.append("titulo", title);
       newsToUpdateData.append("materia", text);
       newsToUpdateData.append("categoria", selectedCategory);
+      newsToUpdateData.append("file", newsImage);
 
       await newsService.updatetNewsById(newsData.id, newsToUpdateData);
 

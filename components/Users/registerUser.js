@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "../../components/Button";
-import PublicInput from "../../components/publicInput";
-import UploadImage from "../../components/uploadImage";
+import Button from "../Button";
+import PublicInput from "../publicInput";
+import UploadImage from "../uploadImage";
 import {
   checkEmail,
   checkPassword,
@@ -16,7 +16,7 @@ import ModalComponent from "../Modal";
 
 const usuarioService = new UserService();
 
-export default function RegisterUser() {
+export default function RegisterUser({ updateUsersList }) {
   const [imagem, setImagem] = useState(null);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -41,11 +41,9 @@ export default function RegisterUser() {
       return;
     }
 
-    setWhileSubmit(true);
-    setActionMessage("Salvo com sucesso");
-    setActionClassName("save");
-
     try {
+      setWhileSubmit(true);
+
       const corpoReqCadastro = new FormData();
       corpoReqCadastro.append("nome", nome);
       corpoReqCadastro.append("email", email);
@@ -55,7 +53,12 @@ export default function RegisterUser() {
         corpoReqCadastro.append("file", imagem.arquivo);
       }
 
+      setActionClassName("save");
+      setActionMessage("Usuário criado com sucesso");
+
       await usuarioService.registerUser(corpoReqCadastro);
+
+      updateUsersList();
     } catch (error) {
       alert("Erro ao cadastrar usuario. " + error?.response?.data?.erro);
     }
