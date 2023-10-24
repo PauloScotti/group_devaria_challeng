@@ -9,6 +9,26 @@
   z-index: 200;
   top: 0;
 
+  .dropdown {
+    button {
+      background-color: transparent;
+      border: none;
+    }
+
+    .dropdown-toggle::after {
+      display: none;
+    }
+  }
+
+  .btn-check:checked + .btn,
+  :not(.btn-check) + .btn:active,
+  .btn:first-child:active,
+  .btn.active,
+  .btn.show {
+    background-color: transparent;
+    border: none;
+  }
+
   .hamburguer {
     top: 21px;
     position: fixed;
@@ -38,10 +58,29 @@
   position: absolute;
   left: 60px;
 
+  .dropdown {
+    button {
+      background-color: transparent;
+      border: none;
+    }
+
+    .dropdown-toggle::after {
+      display: none;
+    }
+  }
+
+  .btn-check:checked + .btn,
+  :not(.btn-check) + .btn:active,
+  .btn:first-child:active,
+  .btn.active,
+  .btn.show {
+    background-color: transparent;
+    border: none;
+  }
+
   .nav_icons {
     background-color: $gray900;
     position: fixed;
-    height: 100%;
     top: 59px;
     bottom: 0px;
     left: 0px;
@@ -57,11 +96,24 @@
       display: flex;
       flex-direction: column;
       height: 85%;
-      justify-content: space-between;
       align-items: center;
       width: 40px;
       margin: 16px 0 0 0;
       padding: 0;
+
+      &.ul-footer {
+        justify-content: end;
+
+        li {
+          margin-bottom: 16px;
+        }
+
+        button {
+          background-color: transparent;
+          border: none;
+          width: auto;
+        }
+      }
 
       li {
         cursor: pointer;

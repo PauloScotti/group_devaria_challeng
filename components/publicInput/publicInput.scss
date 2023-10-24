@@ -26,5 +26,13 @@
       border-bottom: 1px solid $primaryColor;
       color: $primaryColor;
     }
+
+    &.source {
+      flex-direction: row;
+
+      input {
+        width: 100%;
+      }
+    }
   }
 }

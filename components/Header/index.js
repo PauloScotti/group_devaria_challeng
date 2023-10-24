@@ -2,6 +2,8 @@ import Image from "next/image";
 import logoDevanewsMobile from "../../public/images/logo_mobile.svg";
 import hamburguer from "../../public/icons/hamburguer.svg";
 import close from "../../public/icons/close.svg";
+import source from "../../public/icons/icons8-lupa.svg";
+import iconSource from "../../public/icons/icon-source.svg";
 import login from "../../public/icons/seta-para-a-direita.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -12,6 +14,8 @@ import Tooltip from "react-bootstrap/Tooltip";
 import Dropdown from "react-bootstrap/Dropdown";
 import UserService from "@/services/UserService";
 import { useRouter } from "next/router";
+import ModalComponent from "../Modal";
+import PublicInput from "../publicInput";
 
 const newsServices = new NewsService();
 const userServices = new UserService();
@@ -20,8 +24,10 @@ export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
   const [showHideMenu, setShowHideMenu] = useState(false);
   const [showHideMenuAlt, setShowHideMenuAlt] = useState("Abrir menu");
+  const [filter, setFilter] = useState("");
   const [menuStatus, setMenuStatus] = useState(false);
   const [listCategories, setListCategories] = useState([]);
+  const [sourceResult, setSourceResult] = useState([]);
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [avatar, setAvatar] = useState("");
   const primeiroNome = nomeCompleto?.split(" ")[0] || "";
@@ -36,6 +42,12 @@ export default function Header() {
   const logout = () => {
     userServices.logout();
     router.push("/");
+  };
+
+  const onSource = async (e) => {
+    e.preventDefault();
+
+    router.push(`../source/${filter}`);
   };
 
   const showHideMenuAction = () => {
@@ -119,10 +131,54 @@ export default function Header() {
               ) : (
                 ""
               )}
+              {isMobile && primeiroNome ? (
+                <Dropdown>
+                  <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                    {avatar === "" ? (
+                      <span>{primeiroNome}</span>
+                    ) : (
+                      <img className="avatar" src={avatar} alt="Avatar" />
+                    )}
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="/">Home</Dropdown.Item>
+                    <Dropdown.Item href="/admin">Administrar</Dropdown.Item>
+                    <Dropdown.Item href="/users">Usuários</Dropdown.Item>
+                    <Dropdown.Item href="/" onClick={logout}>
+                      Sair
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              ) : (
+                ""
+              )}
             </li>
             <li></li>
             <li></li>
-            <li></li>
+          </ul>
+          <ul className="ul-footer">
+            <li>
+              <ModalComponent
+                buttonOpenModal={
+                  <Image src={source} alt="Pesquisar" width={20} height={20} />
+                }
+                content={
+                  <form onSubmit={onSource}>
+                    <PublicInput
+                      text={"Buscar"}
+                      type={"text"}
+                      value={filter}
+                      onChange={(e) => setFilter(e.target.value)}
+                      className={"source"}
+                      iconPublicInput=""
+                      image={iconSource}
+                      onClickImage={onSource}
+                    />
+                  </form>
+                }
+              />
+            </li>
             <li>
               {primeiroNome ? (
                 <TextTooltip title="Sair" id="t-1">

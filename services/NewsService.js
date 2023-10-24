@@ -13,6 +13,10 @@ export default class NewsService extends HttpService {
     return this.get(`/listarnoticias`);
   }
 
+  async source(dados) {
+    return this.get(`/pesquisa?filtro=${dados}`);
+  }
+
   async getNewsById(id) {
     return this.get(`/listarnoticias?id=${id}`);
   }
