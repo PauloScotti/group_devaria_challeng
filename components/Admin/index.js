@@ -10,6 +10,17 @@ const newsService = new NewsService();
 export default function Admin() {
   const [listNews, setListNews] = useState([]);
 
+  var filtro = document.getElementById("filtro-nome");
+  var tabela = document.getElementById("lista");
+  const sourceOnNewsTable = () => {
+    var nomeFiltro = filtro.value;
+    for (var i = 1; i < tabela.rows.length; i++) {
+      var conteudoCelula = tabela.rows[i].cells[1].innerText;
+      var corresponde = conteudoCelula.toLowerCase().indexOf(nomeFiltro) >= 0;
+      tabela.rows[i].style.display = corresponde ? "" : "none";
+    }
+  };
+
   const fetchData = async () => {
     try {
       const { data } = await newsService.getNews();
@@ -42,11 +53,26 @@ export default function Admin() {
         <RegisterNews updateNewsList={updateNewsList} />
       </div>
       <div className="container-news admin">
-        <Table bordered hover className="vertical-align-middle-desktop">
+        <Table
+          bordered
+          hover
+          className="vertical-align-middle-desktop"
+          id="lista"
+        >
           <thead>
             <tr>
+              {" "}
               <th>Ações</th>
-              <th>Título</th>
+              <th>
+                Título{" "}
+                <input
+                  size="8"
+                  id="filtro-nome"
+                  className="sourceOnNewsTable"
+                  onChange={sourceOnNewsTable}
+                  placeholder="Busca por títulos"
+                />
+              </th>
               <th>Categoria</th>
               <th>Matéria</th>
             </tr>

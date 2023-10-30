@@ -17,6 +17,15 @@
   }
 }
 
+.sourceOnNewsTable {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid $primaryColor;
+  width: 50%;
+  margin: 0;
+  font-size: 0.75em;
+}
+
 .container-news > table > tbody > tr > td.action {
   div {
     button {
@@ -30,5 +39,10 @@
 @media screen and (min-width: $desktopBreakpoint) {
   .text-news-with-limit {
     max-width: 45ch;
+  }
+
+  .sourceOnNewsTable {
+    margin: 0 16px;
+    font-size: 1em;
   }
 }

@@ -44,11 +44,16 @@ textarea {
 
 .action {
   display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: $desktopBreakpoint) {
   .vertical-align-middle-desktop {
     vertical-align: middle;
+  }
+
+  .action {
+    flex-direction: row;
   }
 }
 
